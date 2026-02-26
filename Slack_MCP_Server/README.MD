@@ -53,4 +53,37 @@ cd MCP/Slack_MCP_Server
 ```bash
 docker build -t slack_mcp-mcp-server .
 ```
+### 3. Configure Visual Studio Code settings.json to include the custom catalog
+Edit your VS Code settings.json: 
+    macOS: ~/Library/Application Support/Code/User/settings.json
+    Windows: %APPDATA%\Code\User\settings.json
+    Linux: ~/.config/Code/User/settings.json
+
+```json
+{
+  "mcpServers": {
+    "mcp-toolkit-gateway": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "-v",
+        "[YOUR_HOME]/.docker/mcp:/mcp",
+        "docker/mcp-gateway",
+        "--catalog=/mcp/catalogs/docker-mcp.yaml",
+        "--catalog=/mcp/catalogs/custom.yaml",
+        "--config=/mcp/config.yaml",
+        "--registry=/mcp/registry.yaml",
+        "--tools-config=/mcp/tools.yaml",
+        "--transport=stdio"
+      ]
+    }
+  }
+}
+```
+
+     
 
