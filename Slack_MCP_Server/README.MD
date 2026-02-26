@@ -41,3 +41,11 @@ Non-secret env vars (optional):
 
 ## Notes on Slack API Scopes
 If a tool fails with Slack `missing_scope`, add the required scope in your Slack app config, reinstall the app, and retry.
+
+## Instalation Instruction
+
+### Clone the repo
+```bash
+git clone https://github.com/jpataj/MCP.git
+cd MCP/Slack_MCP_Server
+ ```
