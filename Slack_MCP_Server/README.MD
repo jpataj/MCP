@@ -55,9 +55,9 @@ docker build -t slack_mcp-mcp-server .
 ```
 ### 3. Configure Visual Studio Code settings.json to include the custom catalog
 Edit your VS Code settings.json: 
-    macOS: ~/Library/Application Support/Code/User/settings.json
-    Windows: %APPDATA%\Code\User\settings.json
-    Linux: ~/.config/Code/User/settings.json
+    * macOS: ~/Library/Application Support/Code/User/settings.json
+    * Windows: %APPDATA%\Code\User\settings.json
+    * Linux: ~/.config/Code/User/settings.json
 
 ```json
 {
