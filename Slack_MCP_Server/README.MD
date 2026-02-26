@@ -44,8 +44,13 @@ If a tool fails with Slack `missing_scope`, add the required scope in your Slack
 
 ## Instalation Instruction
 
-### Clone the repo
+### 1. Clone the repo
 ```bash
 git clone https://github.com/jpataj/MCP.git
 cd MCP/Slack_MCP_Server
  ```
+### 2. Build the Docker image
+```bash
+docker build -t slack_mcp-mcp-server .
+```
+
