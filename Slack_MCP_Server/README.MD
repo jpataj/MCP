@@ -53,7 +53,20 @@ cd MCP/Slack_MCP_Server
 ```bash
 docker build -t slack_mcp-mcp-server .
 ```
-### 3. Configure Visual Studio Code settings.json to include the custom catalog
+
+### 3. Create local env file
+```bash
+cat > .env <<'EOF'
+SLACK_BOT_TOKEN=xoxb-your-real-token
+EOF
+```
+
+### 4. Create local state directory
+```bash
+mkdir -p ./state
+```
+
+### 5. Configure Visual Studio Code settings.json to include the custom catalog
 Edit your VS Code settings.json: 
 * macOS: ~/Library/Application Support/Code/User/settings.json
 * Windows: %APPDATA%\Code\User\settings.json
@@ -62,28 +75,25 @@ Edit your VS Code settings.json:
 ```json
 {
   "mcpServers": {
-    "mcp-toolkit-gateway": {
+    "slack_mcp": {
       "command": "docker",
       "args": [
         "run",
         "-i",
         "--rm",
-        "-v",
-        "/var/run/docker.sock:/var/run/docker.sock",
-        "-v",
-        "[YOUR_HOME]/.docker/mcp:/mcp",
-        "docker/mcp-gateway",
-        "--catalog=/mcp/catalogs/docker-mcp.yaml",
-        "--catalog=/mcp/catalogs/custom.yaml",
-        "--config=/mcp/config.yaml",
-        "--registry=/mcp/registry.yaml",
-        "--tools-config=/mcp/tools.yaml",
-        "--transport=stdio"
-      ]
+        "--env-file", "/ABSOLUTE/PATH/TO/slack_mcp-mcp-server/.env",
+        "-e", "SLACK_STATE_PATH=/state/slack_mcp_state.json",
+        "-v", "/ABSOLUTE/PATH/TO/slack_mcp-mcp-server/state:/state",
+        "slack_mcp-mcp-server:latest"
+      ],
+      "transport": "stdio"
     }
   }
 }
 ```
+### 5. Restart VS Code
+Quit VS Code fully and reopen so it reloads MCP servers. 
+
 
      
 
